@@ -4,23 +4,43 @@ var side1 = 5;
 var side2 = 5;
 var side3 = 8;
 var triangleType;
-//COMPLETE THE CODE HERE
+
+if (side1 === side2 && side2 === side3) {
+  triangleType = "Equilateral";
+} else if (side1 === side2 || side1 === side3 || side2 === side3) {
+  triangleType = "Isosceles";
+} else {
+  triangleType = "Scalene";
+}
+
+console.log(`The triangle is: ${triangleType}`);
+
 
 // 2. Write a JavaScript program that counts the number of occurrences of a specific element in an array using a for...of loop.
 
 function countOccurrences(arr, target) {
-  //COMPLETE THE CODE HERE
+  let count = 0;
+  for (let element of arr) {
+    if (element === target) {
+      count++;
+    }
+  }
+  return count;
 }
   
-  var numbers = [1, 2, 3, 2, 4, 2, 5];
-  console.log(countOccurrences(numbers, 2)); 
+var numbers = [1, 2, 3, 2, 4, 2, 5];
+console.log(countOccurrences(numbers, 2)); 
 
 
 // 3. Write a function that takes an array of product prices and returns the total price. 
 //You can assume that the array contains only numbers.
 
 function calculateTotalPrice(prices) {
-  //COMPLETE THE CODE HERE
+  let total = 0;
+  for (let price of prices) {
+    total += price;
+  }
+  return total;
 }
 
 // Example usage:
@@ -32,7 +52,7 @@ console.log(calculateTotalPrice(productPrices));
 //Apply the discount to each product price and return the updated prices as an array.
 
 function applyDiscount(prices, discount) {
-  //COMPLETE THE CODE HERE
+  return prices.map(price => price * (1 - discount));
 }
 
 // Example usage:
@@ -44,7 +64,13 @@ console.log(applyDiscount(productPrices, discountPercentage));
 //returns an array of indices for products that are out of stock (quantity is 0).
 
 function getOutOfStockProducts(quantities) {
-  //COMPLETE THE CODE HERE
+  let indices = [];
+  quantities.forEach((quantity, index) => {
+    if (quantity === 0) {
+      indices.push(index);
+    }
+  });
+  return indices;
 }
 
 // Example usage:
@@ -55,15 +81,21 @@ console.log(getOutOfStockProducts(productQuantities));
 // It should be in the format: 
 // 7 * 1 = 7
 
-// WRITE THE CODE HERE
-
+for (let i = 1; i <= 10; i++) {
+  console.log(`7 * ${i} = ${7 * i}`);
+}
 
 // 7. Create a function to calculate factorial of a number.
 // Assume that the input is an integer
 // Example: Factorial of 5 = 120
 
 function calculateFactorial(n) {
-// COMPLETE THE CODE HERE
+  if (n < 0) return "Input must be a positive integer";
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 // Example Usage
@@ -80,7 +112,14 @@ console.log(calculateFactorial(-1));    // Should print "Input must be a positiv
 // Assume that the inputs are positive integers
 
 function generateFibonacciSeries(numTerms) {
-// COMPLETE THE CODE HERE
+  if (numTerms <= 0) return "Input must be a positive integer";
+  if (numTerms === 1) return [0];
+
+  let fib = [0, 1];
+  for (let i = 2; i < numTerms; i++) {
+    fib.push(fib[i - 1] + fib[i - 2]);
+  }
+  return fib;
 }
 
 // Example Usage
@@ -101,7 +140,9 @@ console.log(generateFibonacciSeries(10));  // Should print [0, 1, 1, 2, 3, 5, 8,
 // * * * * *
 
 function printTriangle(rows) {
-  // COMPLETE THE CODE HERE
+  for (let i = 1; i <= rows; i++) {
+    console.log("* ".repeat(i).trim());
+  }
 }
 
 // Example Usage
@@ -113,7 +154,7 @@ printTriangle(7);
 // Assume that the argument is always a string.
 
 function reverseString(inputString) {
-// COMPLETE THE CODE HERE
+  return inputString.split("").reverse().join("");
 }
 
 // Example Usage
